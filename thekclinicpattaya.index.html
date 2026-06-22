@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The K Clinic Pattaya - เดอะเคคลินิกพัทยา โดยหมอเค</title>
+    <!-- Tailwind CSS for Modern Premium Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Elegant Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Sarabun -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Sarabun', 'Inter', sans-serif; }
+        .nav-link-active { color: #D4AF37; border-bottom: 2px solid #D4AF37; }
+        .article-content p { margin-bottom: 1rem; color: #4A5568; line-height: 1.8; }
+        .article-content h3 { font-size: 1.4rem; font-weight: 700; color: #1A202C; margin-top: 2rem; margin-bottom: 1rem; border-left: 4px solid #D4AF37; padding-left: 0.75rem; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- LANGUAGE & QUICK CONTACT BAR -->
+    <div class="bg-stone-900 text-stone-300 text-xs py-2 px-4 flex justify-between items-center border-b border-stone-800">
+        <div class="flex items-center space-x-4">
+            <span><i class="fa-solid fa-phone text-amber-500 mr-1"></i> 086-4609232</span>
+            <span class="hidden md:inline"><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i> พัทยา, ชลบุรี</span>
+        </div>
+        <div class="flex items-center space-x-3">
+            <button onclick="changeLang('th')" id="lang-th-btn" class="font-bold text-amber-500">TH</button>
+            <span class="text-stone-600">|</span>
+            <button onclick="changeLang('en')" id="lang-en-btn" class="hover:text-amber-500">EN</button>
+        </div>
+    </div>
+
+    <!-- PREMIUM NAVIGATION HEADER -->
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+            <div class="flex flex-col">
+                <span class="text-xl font-bold tracking-widest text-stone-900">THE K CLINIC</span>
+                <span class="text-xs tracking-wider text-amber-600 font-medium -mt-1">PATTAYA</span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex space-x-8 font-medium text-sm text-stone-600">
+                <button onclick="showPage('home')" id="nav-home" class="hover:text-amber-600 transition nav-link-active lang-text" data-th="หน้าแรก" data-en="Home">หน้าแรก</button>
+                <button onclick="showPage('about')" id="nav-about" class="hover:text-amber-600 transition lang-text" data-th="เกี่ยวกับเรา" data-en="About Us">เกี่ยวกับเรา</button>
+                <button onclick="showPage('services')" id="nav-services" class="hover:text-amber-600 transition lang-text" data-th="บริการของเรา" data-en="Services">บริการของเรา</button>
+                <button onclick="showPage('promotions')" id="nav-promotions" class="hover:text-amber-600 transition lang-text" data-th="โปรโมชั่น" data-en="Promotions">โปรโมชั่น</button>
+                <button onclick="showPage('articles')" id="nav-articles" class="hover:text-amber-600 transition lang-text" data-th="บทความความรู้" data-en="Articles">บทความความรู้</button>
+                <button onclick="showPage('contact')" id="nav-contact" class="hover:text-amber-600 transition lang-text" data-th="ติดต่อเรา" data-en="Contact Us">ติดต่อเรา</button>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden text-stone-900 focus:outline-none">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-100 px-4 py-4 space-y-3 shadow-inner">
+            <button onclick="showPage('home'); toggleMobileMenu();" class="block w-full text-left py-2 text-stone-700 font-medium lang-text" data-th="หน้าแรก" data-en="Home">หน้าแรก</button>
+            <button onclick="showPage('about'); toggleMobileMenu();" class="block w-full text-left py-2 text-stone-700 font-medium lang-text" data-th="เกี่ยวกับเรา" data-en="About Us">เกี่ยวกับเรา</button>
+            <button onclick="showPage('services'); toggleMobileMenu();" class="block w-full text-left py-2 text-stone-700 font-medium lang-text" data-th="บริการของเรา" data-en="Services">บริการของเรา</button>
+            <button onclick="showPage('promotions'); toggleMobileMenu();" class="block w-full text-left py-2 text-stone-700 font-medium lang-text" data-th="โปรโมชั่น" data-en="Promotions">โปรโมชั่น</button>
+            <button onclick="showPage('articles'); toggleMobileMenu();" class="block w-full text-left py-2 text-stone-700 font-medium lang-text" data-th="บทความความรู้" data-en="Articles">บทความความรู้</button>
+            <button onclick="showPage('contact'); toggleMobileMenu();" class="block w-full text-left py-2 text-stone-700 font-medium lang-text" data-th="ติดต่อเรา" data-en="Contact Us">ติดต่อเรา</button>
+        </div>
+    </header>
+
+    <!-- ================= PAGE 1: HOME ================= -->
+    <main id="page-home" class="page-section">
+        <!-- Hero Section with Editable Video/Image Background Placeholder -->
+        <div class="relative bg-stone-950 text-white py-24 md:py-32 px-4 overflow-hidden">
+            <div class="absolute inset-0 opacity-20">
+                <!-- Editable Background Image or Video Link inside src -->
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1920&q=80" alt="Clinic Atmosphere" class="w-full h-full object-cover">
+            </div>
+            <div class="relative max-w-5xl mx-auto text-center z-10">
+                <span class="text-amber-500 font-semibold tracking-widest text-xs uppercase mb-3 block lang-text" data-th="ยินดีต้อนรับสู่คลินิกความงามระดับพรีเมียมพัทยา" data-en="Welcome to Pattaya's Premium Aesthetic Clinic">ยินดีต้อนรับสู่คลินิกความงามระดับพรีเมียมพัทยา</span>
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">The K Clinic Pattaya</h1>
+                <p class="text-lg md:text-xl text-stone-300 max-w-2xl mx-auto mb-10 font-light lang-text" data-th="ดูแลผิวพรรณและความงามอย่างปลอดภัย โดยนายแพทย์ ศิขร แสงศร (หมอเค)" data-en="Safe and expert aesthetic care by Dr. Sikhorn Saengsorn (หมอเค)">ดูแลผิวพรรณและความงามอย่างปลอดภัย โดยนายแพทย์ ศิขร แสงศร (หมอเค)</p>
+                
+                <!-- Quick Social Connect Buttons -->
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="https://line.me/ti/p/#YOUR_LINE_ID" target="_blank" class="w-full sm:w-auto bg-[#06C755] hover:bg-[#05b34c] text-white px-8 py-3.5 rounded-full font-medium transition shadow-lg flex items-center justify-center space-x-2">
+                        <i class="fa-fab fa-line text-xl"></i> <span class="lang-text" data-th="ติดต่อเราผ่าน LINE" data-en="Contact via LINE">ติดต่อเราผ่าน LINE</span>
+                    </a>
+                    <a href="https://m.me/#YOUR_MESSENGER_ID" target="_blank" class="w-full sm:w-auto bg-[#0084FF] hover:bg-[#0074df] text-white px-8 py-3.5 rounded-full font-medium transition shadow-lg flex items-center justify-center space-x-2">
+                        <i class="fa-fab fa-facebook-messenger text-xl"></i> <span class="lang-text" data-th="ทักแชท Messenger" data-en="Chat on Messenger">ทักแชท Messenger</span>
+                    </a>
+                    <a href="https://maps.google.com/?cid=15785997426121805606" target="_blank" class="w-full sm:w-auto bg-amber-600 hover:bg-amber-700 text-white px-8 py-3.5 rounded-full font-medium transition shadow-lg flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-map-location-dot text-xl"></i> <span class="lang-text" data-th="เปิด Google Maps" data-en="Open Google Maps">เปิด Google Maps</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home Quick Promotion Section -->
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 mb-2 lang-text" data-th="โปรโมชั่นพิเศษประจำเดือน" data-en="Monthly Special Promotions">โปรโมชั่นพิเศษประจำเดือน</h2>
+                <div class="w-16 h-1 bg-amber-500 mx-auto"></div>
+            </div>
+            <!-- Editable Images Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" alt="Mounjaro Promotion" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-amber-600 tracking-wider uppercase lang-text" data-th="โปรแกรมควบคุมน้ำหนัก" data-en="Weight Management">โปรแกรมควบคุมน้ำหนัก</span>
+                        <h3 class="text-xl font-bold mt-1 text-stone-900 lang-text" data-th="ปากกาลดน้ำหนัก Mounjaro ราคาเริ่มต้นเพียง 1,999.- / โดส" data-en="Mounjaro Weight Loss Pen starts from 1,999 THB / Dose">ปากกาลดน้ำหนัก Mounjaro ราคาเริ่มต้นเพียง 1,999.- / โดส</h3>
+                        <p class="text-slate-600 mt-2 text-sm lang-text" data-th="นวัตกรรมคุมหิว เร่งการเผาผลาญไขมัน ปลอดภัยภายใต้การดูแลของแพทย์" data-en="Innovative appetite control & fat burn under direct medical supervision.">นวัตกรรมคุมหิว เร่งการเผาผลาญไขมัน ปลอดภัยภายใต้การดูแลของแพทย์</p>
+                        <button onclick="showPage('articles')" class="mt-4 text-amber-600 font-semibold text-sm flex items-center space-x-1 hover:text-amber-700">
+                            <span class="lang-text" data-th="อ่านบทความเกร็ดความรู้" data-en="Read Article">อ่านบทความเกร็ดความรู้</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=800&q=80" alt="Botox & Filler Promotion" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-amber-600 tracking-wider uppercase lang-text" data-th="ปรับรูปหน้า พรีเมียม" data-en="Facial Design Premium">ปรับรูปหน้า พรีเมียม</span>
+                        <h3 class="text-xl font-bold mt-1 text-stone-900 lang-text" data-th="โปรแกรม Botox & Filler ปรับรูปหน้าเรียววีเชพอย่างเป็นธรรมชาติ" data-en="Botox & Filler Program for Natural V-Shape Contouring">โปรแกรม Botox & Filler ปรับรูปหน้าเรียววีเชพอย่างเป็นธรรมชาติ</h3>
+                        <p class="text-slate-600 mt-2 text-sm lang-text" data-th="ปรับหน้าเรียว ลดเลือนริ้วรอย เติมเต็มมิติผิวอย่างปลอดภัย คืนความอ่อนเยาว์" data-en="Wrinkle reduction & volume restoration designed uniquely for your face.">ปรับหน้าเรียว ลดเลือนริ้วรอย เติมเต็มมิติผิวอย่างปลอดภัย คืนความอ่อนเยาว์</p>
+                        <button onclick="showPage('services')" class="mt-4 text-amber-600 font-semibold text-sm flex items-center space-x-1 hover:text-amber-700">
+                            <span class="lang-text" data-th="ดูบริการทั้งหมด" data-en="View All Services">ดูบริการทั้งหมด</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Article Shortcuts -->
+            <div class="mt-16 bg-stone-100 p-8 rounded-2xl text-center">
+                <h4 class="text-lg font-bold text-stone-900 mb-4 lang-text" data-th="เลือกอ่านบทความความรู้อื่นๆ ที่น่าสนใจ" data-en="Browse Other Educational Articles">เลือกอ่านบทความความรู้อื่นๆ ที่น่าสนใจ</h4>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button onclick="showPage('services')" class="bg-white hover:bg-amber-500 hover:text-white text-stone-700 px-5 py-2 rounded-full shadow-sm text-sm font-medium transition lang-text" data-th="บทความ โบท็อก" data-en="Botox Article">บทความ โบท็อก</button>
+                    <button onclick="showPage('services')" class="bg-white hover:bg-amber-500 hover:text-white text-stone-700 px-5 py-2 rounded-full shadow-sm text-sm font-medium transition lang-text" data-th="บทความ ฟิลเลอร์" data-en="Filler Article">บทความ ฟิลเลอร์</button>
+                    <button onclick="showPage('services')" class="bg-white hover:bg-amber-500 hover:text-white text-stone-700 px-5 py-2 rounded-full shadow-sm text-sm font-medium transition lang-text" data-th="บทความ ร้อยไหม" data-en="Thread Lift Article">บทความ ร้อยไหม</button>
+                    <button onclick="showPage('services')" class="bg-white hover:bg-amber-500 hover:text-white text-stone-700 px-5 py-2 rounded-full shadow-sm text-sm font-medium transition lang-text" data-th="บทความ สลายไขมันเฉพาะส่วน" data-en="Fat Reduction Article">บทความ สลายไขมันเฉพาะส่วน</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= PAGE 2: ABOUT US ================= -->
+    <main id="page-about" class="page-section hidden">
+        <div class="max-w-5xl mx-auto px-4 py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 lang-text" data-th="เกี่ยวกับเรา" data-en="About Us">เกี่ยวกับเรา</h2>
+                <p class="text-amber-600 font-medium text-sm mt-1">The K Clinic Pattaya</p>
+                <div class="w-16 h-1 bg-amber-500 mx-auto mt-3"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <!-- Editable Doctor Photo Placeholder -->
+                    <div class="relative rounded-2xl overflow-hidden shadow-xl border-4 border-white bg-amber-100">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80" alt="นายแพทย์ ศิขร แสงศร" class="w-full h-[450px] object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white">
+                            <p class="text-lg font-bold">นายแพทย์ ศิขร แสงศร (หมอเค)</p>
+                            <p class="text-xs text-amber-400 lang-text" data-th="ใบอนุญาตประกอบวิชาชีพเวชกรรม เลขที่ 14287" data-en="Medical License No. 14287">ใบอนุญาตประกอบวิชาชีพเวชกรรม เลขที่ 14287</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-stone-900 lang-text" data-th="ดูแลทุกเคสอย่างใส่ใจ โดยแพทย์ผู้เชี่ยวชาญ" data-en="Caring for Every Case with Medical Expertise">ดูแลทุกเคสอย่างใส่ใจ โดยแพทย์ผู้เชี่ยวชาญ</h3>
+                    <p class="text-stone-600 leading-relaxed lang-text" 
+                       data-th="เดอะเคคลินิกพัทยา ยึดมั่นในมาตรฐานความปลอดภัยระดับสูงสุดและการใช้ผลิตภัณฑ์ของแท้ที่ผ่านการรับรอง มุ่งเน้นการดีไซน์ปรับรูปหน้าและดูแลสัดส่วนรูปร่างให้ตรงกับความต้องการของคนไข้ เพื่อผลลัพธ์ที่เป็นธรรมชาติและพึงพอใจสูงสุด" 
+                       data-en="The K Clinic Pattaya adheres to the highest medical safety standards and uses only authenticated FDA-approved products. We specialize in facial contouring and custom body sculpting tailored beautifully to each individual patient.">
+                       เดอะเคคลินิกพัทยา ยึดมั่นในมาตรฐานความปลอดภัยระดับสูงสุดและการใช้ผลิตภัณฑ์ของแท้ที่ผ่านการรับรอง มุ่งเน้นการดีไซน์ปรับรูปหน้าและดูแลสัดส่วนรูปร่างให้ตรงกับความต้องการของคนไข้ เพื่อผลลัพธ์ที่เป็นธรรมชาติและพึงพอใจสูงสุด
+                    </p>
+                    <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                        <p class="text-sm text-stone-700 italic lang-text" data-th="&ldquo;ความปลอดภัยและการผลลัพธ์ที่ตอบโจทย์คนไข้ คือหัวใจสำคัญที่สุดในวิชาชีพของหมอครับ&rdquo;" data-en="&ldquo;Safety and results that perfectly match our patients' goals are the ultimate core values of my medical practice.&ldquo;">"ความปลอดภัยและการผลลัพธ์ที่ตอบโจทย์คนไข้ คือหัวใจสำคัญที่สุดในวิชาชีพของหมอครับ"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= PAGE 3: OUR SERVICES ================= -->
+    <main id="page-services" class="page-section hidden">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-stone-900 mb-2 lang-text" data-th="บริการของเรา" data-en="Our Services">บริการของเรา</h2>
+                <p class="text-slate-500 text-sm max-w-md mx-auto lang-text" data-th="หัตถการความงามระดับพรีเมียม ปลอดภัย ได้มาตรฐาน" data-en="Premium aesthetic procedures curated with excellence.">หัตถการความงามระดับพรีเมียม ปลอดภัย ได้มาตรฐาน</p>
+                <div class="w-16 h-1 bg-amber-500 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 text-xl mb-4"><i class="fa-solid fa-face-smile"></i></div>
+                    <h3 class="text-lg font-bold text-stone-900 mb-2 lang-text" data-th="โบท็อก (Botox)" data-en="Botox Treatment">โบท็อก (Botox)</h3>
+                    <p class="text-stone-600 text-xs leading-relaxed lang-text" data-th="ลดริ้วรอยเหี่ยวย่น ปรับรูปหน้าเรียวเรียบเนียน ลิฟต์กรอบหน้าอย่างเป็นธรรมชาติ" data-en="Reduce fine lines, refine facial symmetry, and lift facial contours naturally.">ลดริ้วรอยเหี่ยวย่น ปรับรูปหน้าเรียวเรียบเนียน ลิฟต์กรอบหน้าอย่างเป็นธรรมชาติ</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 text-xl mb-4"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3 class="text-lg font-bold text-stone-900 mb-2 lang-text" data-th="ฟิลเลอร์ (Filler)" data-en="Dermal Fillers">ฟิลเลอร์ (Filler)</h3>
+                    <p class="text-stone-600 text-xs leading-relaxed lang-text" data-th="เติมเต็มร่องลึก ใต้ตา ร่องแก้ม คาง ปรับโครงสร้างผิวให้ดูสดใสอ่อนเยาว์" data-en="Volumize deep folds, under-eyes, cheeks, and chin to fully rejuvenate tired skin.">เติมเต็มร่องลึก ใต้ตา ร่องแก้ม คาง ปรับโครงสร้างผิวให้ดูสดใสอ่อนเยาว์</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 text-xl mb-4"><i class="fa-solid fa-bezier-curve"></i></div>
+                    <h3 class="text-lg font-bold text-stone-900 mb-2 lang-text" data-th="ร้อยไหม (Thread Lift)" data-en="Thread Lift">ร้อยไหม (Thread Lift)</h3>
+                    <p class="text-stone-600 text-xs leading-relaxed lang-text" data-th="ยกกระชับผิวหน้าหย่อนคล้อย ดึงกรอบหน้าชัด ปรับหน้าเรียวโดยไม่ต้องผ่าตัด" data-en="Instantly lift sagging skin and re-define a sharp jawline without surgery.">ยกกระชับผิวหน้าหย่อนคล้อย ดึงกรอบหน้าชัด ปรับหน้าเรียวโดยไม่ต้องผ่าตัด</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 text-xl mb-4"><i class="fa-solid fa-weight-scale"></i></div>
+                    <h3 class="text-lg font-bold text-stone-900 mb-2 lang-text" data-th="สลายไขมันเฉพาะส่วน" data-en="Fat Reduction">สลายไขมันเฉพาะส่วน</h3>
+                    <p class="text-stone-600 text-xs leading-relaxed lang-text" data-th="ลดไขมันสะสมตามจุดต่างๆ บนร่างกาย ควบคุมสัดส่วนและน้ำหนักอย่างปลอดภัย" data-en="Target stubborn fat pockets and reshape contours safely with modern therapies.">ลดไขมันสะสมตามจุดต่างๆ บนร่างกาย ควบคุมสัดส่วนและน้ำหนักอย่างปลอดภัย</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= PAGE 4: PROMOTIONS ================= -->
+    <main id="page-promotions" class="page-section hidden">
+        <div class="max-w-7xl mx-auto px-4 py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 lang-text" data-th="โปรโมชั่นยอดนิยม" data-en="Hot Promotions">โปรโมชั่นยอดนิยม</h2>
+                <div class="w-16 h-1 bg-amber-500 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Promo Item 1 -->
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <div class="p-8 text-center bg-stone-900 text-white">
+                        <p class="text-amber-400 font-semibold tracking-wider text-xs uppercase">Mounjaro Pen</p>
+                        <p class="text-4xl font-bold mt-2">1,999.- <span class="text-sm font-normal text-stone-400">/ Dose</span></p>
+                    </div>
+                    <div class="p-6 space-y-4 text-center">
+                        <p class="text-sm text-stone-600 font-medium lang-text" data-th="โปรแกรมควบคุมน้ำหนักและสลายไขมันพรีเมียม" data-en="Premium Weight and Appetite Control">โปรแกรมควบคุมน้ำหนักและสลายไขมันพรีเมียม</p>
+                        <hr>
+                        <a href="https://line.me/ti/p/#YOUR_LINE_ID" target="_blank" class="block w-full bg-amber-600 hover:bg-amber-700 text-white py-2.5 rounded-xl font-medium transition text-sm lang-text" data-th="จองคิวรับสิทธิ์" data-en="Book an Appointment">จองคิวรับสิทธิ์</a>
+                    </div>
+                </div>
+                <!-- Promo Item 2 -->
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden border-amber-500 ring-2 ring-amber-500/20 relative">
+                    <div class="absolute top-3 right-3 bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider lang-text" data-th="แนะนำ" data-en="Popular">แนะนำ</div>
+                    <div class="p-8 text-center bg-amber-600 text-white">
+                        <p class="text-white/80 font-semibold tracking-wider text-xs uppercase">V-Shape Full Option</p>
+                        <p class="text-4xl font-bold mt-2">9,999.- <span class="text-sm font-normal text-amber-200">/ Course</span></p>
+                    </div>
+                    <div class="p-6 space-y-4 text-center">
+                        <p class="text-sm text-stone-600 font-medium lang-text" data-th="ผสมผสาน Botox + Filler เพื่อโครงสร้างหน้าเรียวสมบูรณ์แบบ" data-en="Combined Botox & Filler for Complete V-Contour">ผสมผสาน Botox + Filler เพื่อโครงสร้างหน้าเรียวสมบูรณ์แบบ</p>
+                        <hr>
+                        <a href="https://line.me/ti/p/#YOUR_LINE_ID" target="_blank" class="block w-full bg-stone-900 hover:bg-stone-800 text-white py-2.5 rounded-xl font-medium transition text-sm lang-text" data-th="จองคิวรับสิทธิ์" data-en="Book an Appointment">จองคิวรับสิทธิ์</a>
+                    </div>
+                </div>
+                <!-- Promo Item 3 -->
+                <div class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+                    <div class="p-8 text-center bg-stone-900 text-white">
+                        <p class="text-amber-400 font-semibold tracking-wider text-xs uppercase">Fat Reduction Program</p>
+                        <p class="text-4xl font-bold mt-2">999.- <span class="text-sm font-normal text-stone-400">/ Session</span></p>
+                    </div>
+                    <div class="p-6 space-y-4 text-center">
+                        <p class="text-sm text-stone-600 font-medium lang-text" data-th="โปรแกรมสลายไขมันเฉพาะจุด ปรับโครงสร้างรูปร่าง" data-en="Targeted Lipolysis Fat Melt Treatment">โปรแกรมสลายไขมันเฉพาะจุด ปรับโครงสร้างรูปร่าง</p>
+                        <hr>
+                        <a href="https://line.me/ti/p/#YOUR_LINE_ID" target="_blank" class="block w-full bg-amber-600 hover:bg-amber-700 text-white py-2.5 rounded-xl font-medium transition text-sm lang-text" data-th="จองคิวรับสิทธิ์" data-en="Book an Appointment">จองคิวรับสิทธิ์</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= PAGE 5: EDUCATIONAL ARTICLES ================= -->
+    <main id="page-articles" class="page-section hidden">
+        <div class="max-w-4xl mx-auto px-4 py-16">
+            <!-- Article Header Metadata -->
+            <div class="border-b border-slate-200 pb-6 mb-8">
+                <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider lang-text" data-th="เกร็ดความรู้สุขภาพและการลดน้ำหนัก" data-en="Health & Weight Loss Insight">เกร็ดความรู้สุขภาพและการลดน้ำหนัก</span>
+                <h1 class="text-2xl md:text-4xl font-bold text-stone-900 mt-4 mb-4 lang-text" 
+                    data-th="ปากกาลดน้ำหนัก Mounjaro คืออะไร ? ดีไหม เหมาะกับใคร ? ลดได้กี่กิโล ? อันตรายไหม ?" 
+                    data-en="What is Mounjaro Weight Loss Pen? Is it safe? Who is it for? How many kg can you lose?">
+                    ปากกาลดน้ำหนัก Mounjaro คืออะไร ? ดีไหม เหมาะกับใคร ? ลดได้กี่กิโล ? อันตรายไหม ?
+                </h1>
+                
+                <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold">V</div>
+                        <div>
+                            <p class="font-medium text-stone-800 lang-text" data-th="ทีมแพทย์ V Square Clinic wellness" data-en="V Square Clinic Wellness Medical Team">ทีมแพทย์ V Square Clinic wellness</p>
+                            <p class="text-[10px] lang-text" data-th="อัพเดตล่าสุด : 16 June 2026" data-en="Last Updated: 16 June 2026">วันที่อัพเดตล่าสุด : 16 June 2026</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-1 bg-slate-100 px-3 py-1.5 rounded-md">
+                        <i class="fa-solid fa-eye text-slate-400"></i>
+                        <span class="font-semibold text-slate-700">69,854</span>
+                        <span class="lang-text" data-th="คนอ่านบทความนี้แล้ว" data-en="views">มีคนอ่านบทความนี้แล้ว</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thai Version Article Body -->
+            <article id="article-th" class="article-content text-slate-700 text-base leading-relaxed space-y-6">
+                <div class="bg-amber-50/60 p-5 rounded-xl border border-amber-200/50 mb-6">
+                    <h4 class="font-bold text-stone-900 mb-2">ปากกาลดน้ำหนัก Mounjaro (Tirzepatide) ยาตัวใหม่จากสหรัฐอเมริกา</h4>
+                    <p class="text-sm text-stone-700 m-0">ปากกาลดน้ำหนัก Mounjaro คือยาฉีดลดน้ำหนักจากบริษัท Eli Lilly & Co. ประเทศสหรัฐอเมริกา ที่พัฒนาโดยใช้ตัวยา Tirzepatide ซึ่งอยู่ในกลุ่ม Dual Agonist ออกฤทธิ์ทั้ง GLP-1 และ GIP Receptor ช่วยควบคุมความอยากอาหารและเพิ่มการเผาผลาญพลังงานได้พร้อมกัน</p>
+                    <p class="text-sm text-stone-700 mt-2 m-0">ในบทความนี้ หมอจะมาให้ความรู้เกี่ยวกับปากกาลดน้ำหนัก Mounjaro ตั้งแต่กลไกการทำงาน ไปจนถึงข้อควรระวังและวิธีใช้ที่ถูกต้อง เพื่อให้เข้าใจว่ายาฉีดกลุ่มนี้ทำงานอย่างไร เหมาะกับใครบ้าง ? และควรใช้ภายใต้การดูแลของแพทย์อย่างไร ? จึงจะปลอดภัยและได้ผลครับ</p>
+                </div>
+
+                <h3>ปากกาลดน้ำหนัก Mounjaro คืออะไร ?</h3>
+                <p>ปากกาลดน้ำหนัก Mounjaro (มอนจาโร) หรือชื่อสามัญว่า Tirzepatide คือยาฉีดลดน้ำหนักชนิดใหม่จากบริษัท Eli Lilly & Co. ประเทศสหรัฐอเมริกา ซึ่งได้รับการอนุมัติจาก FDA สหรัฐฯ สำหรับใช้รักษาโรคเบาหวานชนิดที่ 2 และใช้เพื่อควบคุมน้ำหนัก ปัจจุบันมีใช้ในหลายประเทศ รวมถึงประเทศไทยด้วยครับ</p>
+
+                <h3>กลไกการออกฤทธิ์ของตัวยา Tirzepatide ในปากกาลดน้ำหนัก Mounjaro</h3>
+                <p>ปากกาลดน้ำหนัก Mounjaro จะใช้ตัวยา Tirzepatide ซึ่งอยู่ในกลุ่ม Dual Agonist ที่ออกฤทธิ์เลียนแบบการทำงานของฮอร์โมนในร่างกาย 2 ชนิดพร้อมกัน คือ GLP-1 (Glucagon-like Peptide-1) และ GIP (Glucose-dependent Insulinotropic Polypeptide) เพื่อช่วยทั้งลดความอยากอาหารและการใช้พลังงานของร่างกายครับ</p>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-600 mb-4">
+                    <li><strong>GLP-1:</strong> ลดความอยากอาหาร ทำให้อิ่มเร็ว อิ่มนาน ชะลอการย่อยอาหาร และช่วยควบคุมระดับน้ำตาลในเลือด</li>
+                    <li><strong>GIP:</strong> กระตุ้นการหลั่งอินซูลินเมื่อระดับน้ำตาลสูง เพิ่มประสิทธิภาพการเผาผลาญไขมัน และลดโอกาสเกิดภาวะน้ำตาลต่ำเกินไป</li>
+                </ul>
+
+                <h3>ปากกาลดน้ำหนัก Mounjaro ดีไหม ? ลดได้กี่โล ?</h3>
+                <p>ปากกาลดน้ำหนัก Mounjaro เป็นยาฉีดลดน้ำหนักที่มีงานวิจัยรองรับว่าช่วยลดน้ำหนักได้และปลอดภัยเมื่ออยู่ในการดูแลของแพทย์ โดยเฉพาะในผู้ที่มีภาวะอ้วน หรือผู้ที่ลดน้ำหนักด้วยวิธีทั่วไปแล้วยังไม่เห็นผลครับ</p>
+                <div class="bg-slate-100 p-4 rounded-xl">
+                    <p class="font-semibold text-sm mb-1 text-stone-900">ผลลัพธ์ในการลดน้ำหนักตามงานวิจัย:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600">
+                        <li><strong>เดือนแรก:</strong> ลดได้เฉลี่ย 3-5 กิโลกรัม เมื่อฉีดสัปดาห์ละ 1 ครั้ง (ขนาดเริ่มต้น 2.5 mg) และใช้อย่างต่อเนื่อง</li>
+                        <li><strong>ภายใน 1 ปี 6 เดือน:</strong> สามารถลดน้ำหนักลงได้ 15-22% ของน้ำหนักตัว</li>
+                    </ul>
+                </div>
+
+                <h3>เปรียบเทียบปากกาลดน้ำหนักยี่ห้อ Mounjaro / Wegovy / Saxenda</h3>
+                <div class="overflow-x-auto my-4">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-stone-900 text-white">
+                                <th class="p-3 border">ยี่ห้อ (ตัวยา)</th>
+                                <th class="p-3 border">กลุ่มยา</th>
+                                <th class="p-3 border">ความถี่</th>
+                                <th class="p-3 border">จุดเด่น</th>
+                                <th class="p-3 border">ผลลัพธ์เฉลี่ย</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-stone-700 bg-white">
+                            <tr>
+                                <td class="p-3 border font-semibold">Saxenda (Liraglutide)</td>
+                                <td class="p-3 border">GLP-1 Agonist</td>
+                                <td class="p-3 border">ทุกวัน</td>
+                                <td class="p-3 border">เหมาะกับผู้เริ่มต้น ปลอดภัยสูง อย.ไทยรับรอง</td>
+                                <td class="p-3 border">5-10% ของน้ำหนักตัว</td>
+                            </tr>
+                            <tr class="bg-slate-50">
+                                <td class="p-3 border font-semibold">Wegovy (Semaglutide)</td>
+                                <td class="p-3 border">GLP-1 Agonist รุ่นใหม่</td>
+                                <td class="p-3 border">1 ครั้ง/สัปดาห์</td>
+                                <td class="p-3 border">อิ่มนาน สะดวก ลดความเสี่ยงโรคหัวใจ</td>
+                                <td class="p-3 border">ประมาณ 15% ของน้ำหนักตัว</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border font-semibold text-amber-600">Mounjaro (Tirzepatide)</td>
+                                <td class="p-3 border font-medium text-amber-600">Dual Agonist (GLP-1+GIP)</td>
+                                <td class="p-3 border text-amber-600">1 ครั้ง/สัปดาห์</td>
+                                <td class="p-3 border text-amber-600">คุมหิวได้ดีเยี่ยม เร่งการเผาผลาญ ลดไขมันช่องท้อง</td>
+                                <td class="p-3 border font-bold text-amber-600">15-22% ของน้ำหนักตัว</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>ข้อควรระวังและข้อห้ามใช้ปากกาลดน้ำหนัก Mounjaro</h3>
+                <p><strong>ข้อห้ามใช้เด็ดขาด:</strong> ผู้ที่มีประวัติครอบครัวเป็นมะเร็งไทรอยด์ชนิด Medullary Thyroid Cancer (MTC), โรค MEN 2, สตรีมีครรภ์/ให้นมบุตร, ผู้ที่มีประวัติตับอ่อนอักเสบ หรือโรคไตเรื้อรังรุนแรง</p>
+
+                <h3>คำถามที่พบบ่อย (FAQ)</h3>
+                <p><strong>1. ปากกาลดน้ำหนัก Mounjaro 1 แท่งใช้ได้กี่วัน?</strong><br>โดยทั่วไปปากกาลดน้ำหนัก Mounjaro 1 แท่ง สามารถแบ่งฉีดได้ 4 ครั้ง ใช้ได้เป็นระยะเวลา 1 เดือนเต็ม เมื่อฉีดสัปดาห์ละ 1 ครั้งตามกำหนดครับ</p>
+                <p><strong>2. หลังหยุดใช้ Mounjaro น้ำหนักจะโยโย่กลับมาหรือไม่?</strong><br>มีโอกาสกลับมาได้หากคนไข้ยังคงพฤติกรรมการรับประทานอาหารแบบเดิม แนะนำให้ค่อยๆ ลดยาตามแผนการรักษาของแพทย์ร่วมกับการปรับพฤติกรรมการใช้ชีวิตอย่างยั่งยืนครับ</p>
+            </article>
+
+            <!-- English Version Article Body (Hidden by default, shown when language toggled) -->
+            <article id="article-en" class="article-content text-slate-700 text-base leading-relaxed space-y-6 hidden">
+                <div class="bg-amber-50/60 p-5 rounded-xl border border-amber-200/50 mb-6">
+                    <h4 class="font-bold text-stone-900 mb-2">Mounjaro (Tirzepatide) Weight Loss Pen - New Innovation from the USA</h4>
+                    <p class="text-sm text-stone-700 m-0">Mounjaro is an innovative FDA-approved injectable medication manufactured by Eli Lilly & Co., USA. Developed utilizing Tirzepatide (a Dual GLP-1 and GIP receptor agonist), it acts simultaneously to manage appetite suppressions and enhance baseline metabolism.</p>
+                </div>
+
+                <h3>What is Mounjaro?</h3>
+                <p>Mounjaro (Tirzepatide) is a groundbreaking once-weekly weight management injection approved by the US FDA for Type 2 Diabetes treatment and chronic weight control management. It is widely accessible internationally, including in authorized healthcare channels in Thailand.</p>
+
+                <h3>How Does Tirzepatide Work?</h3>
+                <p>Unlike singular agonists, Tirzepatide works elegantly as a Dual Agonist mimicking two distinct natural metabolic hormones:</p>
+                <ul class="list-disc pl-6 space-y-1 text-sm text-slate-600 mb-4">
+                    <li><strong>GLP-1:</strong> Delays gastric emptying, increases post-meal satiety, and regulates continuous hunger signals.</li>
+                    <li><strong>GIP:</strong> Enhances direct insulin synthesis, improves systemic lipid metabolism, and efficiently minimizes hypoglycemia risks.</li>
+                </ul>
+
+                <h3>Expected Results & Efficiency</h3>
+                <p>Clinical studies demonstrate highly visible outcomes when strictly monitored under professional physician supervision:</p>
+                <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600">
+                    <li><strong>First Month:</strong> Average loss of 3-5 kg with standard initialization dosage (2.5 mg once-weekly).</li>
+                    <li><strong>Long-term (1.5 Years):</strong> Significant overall body weight reductions averaging between 15% to 22%.</li>
+                </ul>
+            </article>
+        </div>
+    </main>
+
+    <!-- ================= PAGE 6: CONTACT US ================= -->
+    <main id="page-contact" class="page-section hidden">
+        <div class="max-w-6xl mx-auto px-4 py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 lang-text" data-th="ติดต่อเรา" data-en="Contact Us">ติดต่อเรา</h2>
+                <div class="w-16 h-1 bg-amber-500 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Location Details & Maps Button -->
+                <div class="space-y-6 bg-white p-8 rounded-2xl shadow-sm border">
+                    <h3 class="text-xl font-bold text-stone-900">The K Clinic Pattaya</h3>
+                    <div class="space-y-4 text-stone-600 text-sm">
+                        <p class="flex items-start space-x-3">
+                            <i class="fa-solid fa-location-dot text-amber-500 mt-1 text-lg"></i>
+                            <span>เลขที่ 245/84 หมู่ 9 ตำบลหนองปรือ อำเภอบางละมุง จังหวัดชลบุรี รหัสไปรษณีย์ 20150</span>
+                        </p>
+                        <p class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-amber-500 text-lg"></i>
+                            <span>086-4609232</span>
+                        </p>
+                        <p class="flex items-center space-x-3">
+                            <i class="fa-solid fa-user-doctor text-amber-500 text-lg"></i>
+                            <span>นายแพทย์ ศิขร แสงศร (หมอเค)</span>
+                        </p>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <h4 class="font-bold text-stone-900 mb-2 lang-text" data-th="แผนที่คลินิกบน Google Maps" data-en="Clinic Location on Google Maps">แผนที่คลินิกบน Google Maps</h4>
+                        <p class="text-xs text-slate-500 mb-4 lang-text" data-th="คุณหมอได้ผูกพิกัดจริงของคลินิกพัทยาไว้เรียบร้อยแล้ว สามารถกดเพื่อนำทางได้ทันที" data-en="The precise coordinates of the Pattaya branch have been integrated below. Click to navigate.">คุณหมอได้ผูกพิกัดจริงของคลินิกพัทยาไว้เรียบร้อยแล้ว สามารถกดเพื่อนำทางได้ทันที</p>
+                        
+                        <!-- Primary Google Maps Navigation Link for The K Clinic Pattaya -->
+                        <a href="https://maps.google.com/?cid=15785997426121805606" target="_blank" class="inline-flex items-center space-x-2 bg-stone-900 hover:bg-stone-800 text-white px-6 py-3 rounded-xl font-medium transition text-sm shadow">
+                            <i class="fa-solid fa-map-location-dot text-amber-400 text-base"></i>
+                            <span class="lang-text" data-th="ดูแผนที่บน Google Maps" data-en="View on Google Maps">ดูแผนที่บน Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Live Embedded Map Placeholder (Simulated via design) -->
+                <div class="rounded-2xl overflow-hidden border shadow-sm relative min-h-[300px] bg-slate-200">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.6256247957444!2d100.8872583!3d12.9317208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31029b004b1b23ed%3A0xd913210571388f26!2sThe%20K%20Clinic%20%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%A2%E0%B8%B2!5e0!3m2!1sth!2sth!4v1710000000000!5m2!1sth!2sth" 
+                        class="w-full h-full min-h-[350px] border-0" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PREMIUM FOOTER -->
+    <footer class="bg-stone-900 text-stone-400 py-12 px-4 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+            <div>
+                <h4 class="text-white text-base font-bold mb-3 tracking-widest">THE K CLINIC PATTAYA</h4>
+                <p class="text-xs text-stone-500 leading-relaxed lang-text" data-th="ดูแลความงามอย่างปลอดภัย คืนความมั่นใจอย่างมีระดับ โดยนายแพทย์ ศิขร แสงศร" data-en="Delivering safe, premium-tier aesthetic treatments to restore elegance and true medical confidence.">ดูแลความงามอย่างปลอดภัย คืนความมั่นใจอย่างมีระดับ โดยนายแพทย์ ศิขร แสงศร</p>
+            </div>
+            <div>
+                <h4 class="text-white text-base font-bold mb-3 lang-text" data-th="ลิงก์ด่วน" data-en="Quick Links">ลิงก์ด่วน</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><button onclick="showPage('home')" class="hover:text-amber-400 transition lang-text" data-th="หน้าแรก & โปรโมชั่น" data-en="Home & Promotions">หน้าแรก & โปรโมชั่น</button></li>
+                    <li><button onclick="showPage('articles')" class="hover:text-amber-400 transition lang-text" data-th="บทความความรู้ Mounjaro" data-en="Mounjaro Medical Article">บทความความรู้ Mounjaro</button></li>
+                    <li><a href="https://maps.google.com/?cid=15785997426121805606" target="_blank" class="hover:text-amber-400 transition lang-text" data-th="แผนที่นำทางคลินิก" data-en="Google Maps Navigation">แผนที่นำทางคลินิก</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white text-base font-bold mb-3 lang-text" data-th="ติดต่อเรา" data-en="Connect with Us">ติดต่อเรา</h4>
+                <p class="text-xs text-stone-400"><i class="fa-solid fa-phone mr-1.5 text-amber-500"></i> 086-4609232</p>
+                <div class="flex space-x-3 mt-4">
+                    <a href="https://line.me/ti/p/#YOUR_LINE_ID" target="_blank" class="w-8 h-8 rounded-full bg-stone-800 hover:bg-[#06C755] transition flex items-center justify-center text-white"><i class="fa-fab fa-line"></i></a>
+                    <a href="https://m.me/#YOUR_MESSENGER_ID" target="_blank" class="w-8 h-8 rounded-full bg-stone-800 hover:bg-[#0084FF] transition flex items-center justify-center text-white"><i class="fa-fab fa-facebook-messenger"></i></a>
+                    <a href="https://maps.google.com/?cid=15785997426121805606" target="_blank" class="w-8 h-8 rounded-full bg-stone-800 hover:bg-amber-600 transition flex items-center justify-center text-white"><i class="fa-solid fa-map-location-dot"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto text-center text-[11px] text-stone-600 border-t border-stone-800/60 mt-8 pt-6">
+            &copy; 2026 The K Clinic Pattaya. All Rights Reserved. Medical License No. 14287.
+        </div>
+    </footer>
+
+    <!-- LIGHTWEIGHT CORE SINGLE-PAGE & LANGUAGE ROUTER JS -->
+    <script>
+        // Simple SPA Page Switcher Logic
+        function showPage(pageId) {
+            // Hide all main content areas
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            // Display targeted section
+            document.getElementById('page-' + pageId).classList.remove('hidden');
+            
+            // Manage Active Class Styles on Desktop Header Navbar Links
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('nav-link-active');
+            });
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) activeNav.classList.add('nav-link-active');
+            
+            // Automatically scroll user windows gracefully back to view header top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile responsive menu presentation toggler
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Realtime bilingual English/Thai dynamic layout text translator
+        function changeLang(lang) {
+            document.querySelectorAll('.lang-text').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (text) el.innerHTML = text;
+            });
+
+            // Handle Article Language Toggles Specifically
+            if (lang === 'en') {
+                document.getElementById('article-th').classList.add('hidden');
+                document.getElementById('article-en').classList.remove('hidden');
+                document.getElementById('lang-en-btn').classList.add('text-amber-500', 'font-bold');
+                document.getElementById('lang-th-btn').classList.remove('text-amber-500', 'font-bold');
+            } else {
+                document.getElementById('article-en').classList.add('hidden');
+                document.getElementById('article-th').classList.remove('hidden');
+                document.getElementById('lang-th-btn').classList.add('text-amber-500', 'font-bold');
+                document.getElementById('lang-en-btn').classList.remove('text-amber-500', 'font-bold');
+            }
+        }
+    </script>
+</body>
+</html>
